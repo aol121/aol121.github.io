@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Corgi&#39;s Zone">
 <meta property="og:description" content="每次写JS 开局就在 顶部  var log = console.log.bind(console);ES6写法  let log = ::console.log然后每次输出就直接   log(XXX)  就可以打印了~  不需要  xxx.log  或者 有的编辑器需要写 console.log  12345678910.recommend-goods li&amp;gt;a&amp;gt;p:first-c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-31T07:25:20.832Z">
+<meta property="og:updated_time" content="2017-11-07T06:08:47.868Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开发笔记">
 <meta name="twitter:description" content="每次写JS 开局就在 顶部  var log = console.log.bind(console);ES6写法  let log = ::console.log然后每次输出就直接   log(XXX)  就可以打印了~  不需要  xxx.log  或者 有的编辑器需要写 console.log  12345678910.recommend-goods li&amp;gt;a&amp;gt;p:first-c">
@@ -342,6 +342,69 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;</div><div class="line">  &lt;span&gt;hello &lt;/span&gt;world</div><div class="line">&lt;/p&gt;</div><div class="line"></div><div class="line">//JQ代码</div><div class="line">//方法一</div><div class="line">var text = $(<span class="string">'p'</span>).contents().filter(<span class="function"><span class="title">function</span></span>() &#123; <span class="built_in">return</span> this.nodeType === 3; &#125;).text().trim();</div><div class="line">//方法二</div><div class="line">var text = $(<span class="string">"div p"</span>).<span class="built_in">clone</span>().find(<span class="string">'*'</span>).remove().end().text().trim();</div><div class="line">//后面添加.trim() 去除首尾空白 换行符等</div><div class="line">console.log(text); //world</div></pre></td></tr></table></figure>
 <p>格林时间：Thu May 18 2017 00:00:00 GMT+0800 (中国标准时间) 格式转换</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var d = new Date(<span class="string">'Thu May 12 2016 08:00:00 GMT+0800 (中国标准时间)'</span>);</div><div class="line">youWant=d.getFullYear() + <span class="string">'-'</span> + (d.getMonth() + 1) + <span class="string">'-'</span> + d.getDate() + <span class="string">' '</span> + d.getHours() + <span class="string">':'</span> + d.getMinutes() + <span class="string">':'</span> + d.getSeconds();</div><div class="line"></div><div class="line">youWant= d.getFullYear() + <span class="string">'-'</span></div><div class="line">            + (d.getMonth()&lt;9 ? <span class="string">"0"</span>+(d.getMonth() + 1) : (d.getMonth() + 1)) + <span class="string">'-'</span></div><div class="line">            + (d.getDate()&lt;10 ? <span class="string">"0"</span>+d.getDate() : d.getDate() )+ <span class="string">' '</span></div><div class="line">            + (d.getHours()&lt;10 ? <span class="string">"0"</span>+d.getHours() : d.getHours()) + <span class="string">':'</span></div><div class="line">            + (d.getMinutes()&lt;10 ? <span class="string">"0"</span>+d.getMinutes() : d.getMinutes()) + <span class="string">':'</span></div><div class="line">            + (d.getSeconds()&lt;10 ? <span class="string">"0"</span>+d.getSeconds() : d.getSeconds());</div><div class="line"></div><div class="line"></div><div class="line">//yyyy-MM-dd hh:mm:ss</div></pre></td></tr></table></figure>
+<p>GIT 使用</p>
+<p>1、本地创建空白文件夹，作为git仓库<br>2、在当前文件夹打开命令行工具  输入   git init   =&gt; 文件夹出现 .git 文件夹<br>3、打开github  创建远程仓库  new repository =&gt;  定义名称  =&gt;   确定添加<br>4、联系远程仓库与本地仓库<br>    Git Bush Here<br>    git config  –global user.name “aol121”<br>    git config  –global user.email “785842297@qq.com”<br>    注意：git config  –global 参数，有了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然你也可以对某个仓库指定的不同的用户名和邮箱。</p>
+<pre><code>本地仓库命令行工具输入：git remote add origin git@github.com:aol121/learnGit.git
+出现报错：error: src refspec master does not match any.  因为文件是空的不能上传
+解决：
+touch README
+git add README
+git commit -m &apos;first commit&apos;
+git push origin master
+
+又报错：ERROR: Permission to aol121/learnGit.git denied to deploy key
+保证在执行  git config  –global   的全局配置后
+找到   C:\Users\Administrator\.ssh\id_rsa.pub
+点击github上你的个人信息  中有个settings  =&gt;  SSH and GPG keys =&gt;将 id_rsa.pub 里的内容复制到Key  Title任意取  =&gt; Add SSH key
+添加不上 ？   可能你的公钥在某个仓库里被使用过了
+</code></pre><p>5、创建合并分支<br>    git checkout -b dev   创建并切换分支<br>    git checkout master  切换分支<br>    git branch 查看当前分支<br>    cat readme.txt 查看文件详情</p>
+<pre><code>现在我们可以把dev分支上的内容合并到分支master上了，
+可以在master分支上，使用如下命令 git merge dev
+
+总结创建与合并分支命令如下：
+</code></pre><p>   查看分支：git branch</p>
+<p>   创建分支：git branch name</p>
+<p>   切换分支：git checkout name</p>
+<pre><code>创建+切换分支：git checkout –b name
+
+合并某分支到当前分支：git merge name
+
+删除分支：git branch –d name
+</code></pre><p>6、多人协作工作模式一般是这样的：</p>
+<p>首先，可以试图用git push origin branch-name推送自己的修改.<br>如果推送失败，则因为远程分支比你的本地更新早，需要先用git pull试图合并。<br>如果合并有冲突，则需要解决冲突，并在本地提交。再用git push origin branch-name推送。</p>
+<p>Git基本常用命令如下：</p>
+<p>   mkdir：         XX (创建一个空目录 XX指目录名)</p>
+<p>   pwd：          显示当前目录的路径。</p>
+<p>   git init          把当前的目录变成可以管理的git仓库，生成隐藏.git文件。</p>
+<p>   git add XX       把xx文件添加到暂存区去。</p>
+<p>   git commit –m “XX”  提交文件 –m 后面的是注释。</p>
+<p>   git status        查看仓库状态</p>
+<p>   git diff  XX      查看XX文件修改了那些内容</p>
+<p>   git log          查看历史记录</p>
+<p>   git reset  –hard HEAD^ 或者 git reset  –hard HEAD~ 回退到上一个版本</p>
+<pre><code>(如果想回退到100个版本，使用git reset –hard HEAD~100 )
+</code></pre><p>   cat XX         查看XX文件内容</p>
+<p>   git reflog       查看历史记录的版本号id</p>
+<p>   git checkout — XX  把XX文件在工作区的修改全部撤销。</p>
+<p>   git rm XX          删除XX文件</p>
+<p>   git remote add origin <a href="https://github.com/tugenhua0707/testgit" target="_blank" rel="external">https://github.com/tugenhua0707/testgit</a> 关联一个远程库</p>
+<p>   git push –u(第一次要用-u 以后不需要) origin master 把当前master分支推送到远程库</p>
+<p>   git clone <a href="https://github.com/tugenhua0707/testgit" target="_blank" rel="external">https://github.com/tugenhua0707/testgit</a>  从远程库中克隆</p>
+<p>   git checkout –b dev  创建dev分支 并切换到dev分支上</p>
+<p>   git branch  查看当前所有的分支</p>
+<p>   git checkout master 切换回master分支</p>
+<p>   git merge dev    在当前的分支上合并dev分支</p>
+<p>   git branch –d dev 删除dev分支</p>
+<p>   git branch name  创建分支</p>
+<p>   git stash 把当前的工作隐藏起来 等以后恢复现场后继续工作</p>
+<p>   git stash list 查看所有被隐藏的文件列表</p>
+<p>   git stash apply 恢复被隐藏的文件，但是内容不删除</p>
+<p>   git stash drop 删除文件</p>
+<p>   git stash pop 恢复文件的同时 也删除文件</p>
+<p>   git remote 查看远程库的信息</p>
+<p>   git remote –v 查看远程库的详细信息</p>
+<p>   git push origin master  Git会把master分支推送到远程库对应的远程分支上</p>
+
       
     </div>
     
